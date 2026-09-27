@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPMJ — Suraj Prakash Mangilal Jewellers</title>
+<meta name="theme-color" content="#250407">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+:root{--wine:#300508;--red:#6f1116;--gold:#d5a94a;--ivory:#f4ead7}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#160204;color:var(--ivory);font-family:Inter,sans-serif}
+#stage{position:fixed;inset:0}canvas{display:block}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 42%,transparent 20%,rgba(0,0,0,.18) 58%,rgba(0,0,0,.72) 100%);z-index:2}
+.grain{position:fixed;inset:-50%;pointer-events:none;z-index:3;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");transform:rotate(8deg)}
+.ui{position:fixed;inset:0;z-index:5;pointer-events:none}.brand{position:absolute;top:28px;left:34px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;opacity:.75}.edition{position:absolute;top:28px;right:34px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.58}
+.intro{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:min(620px,90vw);transition:opacity .8s,transform 1s}.intro img{width:min(190px,38vw);height:auto;display:block;margin:0 auto 28px;mix-blend-mode:screen;filter:drop-shadow(0 0 20px rgba(213,169,74,.16))}.eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:#d7bf8b;margin-bottom:14px}.title{font:500 clamp(42px,7vw,92px)/.82 'Cormorant Garamond',serif;letter-spacing:.025em}.subtitle{margin:22px auto 32px;max-width:480px;color:#c8b9a2;font:italic 18px 'Cormorant Garamond',serif;line-height:1.35}.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.55);background:rgba(33,4,7,.45);color:var(--ivory);padding:14px 28px;font-size:10px;letter-spacing:.38em;text-transform:uppercase;backdrop-filter:blur(8px);transition:.35s}.enter:hover{background:#d5a94a;color:#240407;box-shadow:0 0 35px rgba(213,169,74,.2)}
+.hint{position:absolute;bottom:31px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#b8a98f;opacity:.7}.line{display:inline-block;width:42px;height:1px;background:var(--gold);vertical-align:middle;margin:0 12px;opacity:.6}
+#loading{position:fixed;inset:0;background:#210306;z-index:10;display:grid;place-items:center;transition:opacity .8s}.loadmark{font:500 28px 'Cormorant Garamond',serif;letter-spacing:.25em;color:#d5a94a}
+.opened .intro{opacity:0;transform:translate(-50%,-58%) scale(.96)}.opened .hint{opacity:0}
+@media(max-width:700px){.brand{left:18px}.edition{right:18px}.intro img{width:145px}.subtitle{font-size:16px}.title{font-size:52px}}
+</style>
+</head>
+<body>
+<div id="loading"><div class="loadmark">SPMJ</div></div>
+<div id="stage"></div><div class="vignette"></div><div class="grain"></div>
+<div class="ui">
+<div class="brand">Suraj Prakash Mangilal Jewellers</div><div class="edition">Jodhpur · Rajasthan</div>
+<div class="intro">
+<img src="data:image/jpeg;base64,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" alt="SPMJ logo">
+<div class="eyebrow">An invitation to enter</div>
+<div class="title">The House of SPMJ</div>
+<div class="subtitle">Where Rajasthan's heritage meets the quiet brilliance of fine jewellery.</div>
+<button class="enter" id="enter">Enter the House</button>
+</div>
+<div class="hint"><span class="line"></span>Move to explore<span class="line"></span></div>
+</div>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
+import {gsap} from 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js';
+
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x190204);scene.fog=new THREE.FogExp2(0x190204,.055);
+const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);camera.position.set(0,2.8,18);
+const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;document.querySelector('#stage').appendChild(renderer.domElement);
+
+const gold=new THREE.MeshStandardMaterial({color:0xb98a31,metalness:.86,roughness:.24});
+const stone=new THREE.MeshStandardMaterial({color:0x8d5b3d,roughness:.78,metalness:.08});
+const darkStone=new THREE.MeshStandardMaterial({color:0x321c19,roughness:.82});
+const red=new THREE.MeshStandardMaterial({color:0x4b080d,roughness:.5,metalness:.1});
+
+scene.add(new THREE.HemisphereLight(0xf6dfba,0x130103,1.3));
+const key=new THREE.PointLight(0xd7a94c,80,28);key.position.set(0,7,7);scene.add(key);
+const redLight=new THREE.PointLight(0x7a1118,45,25);redLight.position.set(0,4,-5);scene.add(redLight);
+
+const world=new THREE.Group();scene.add(world);
+function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;world.add(m);return m}
+function cyl(r,h,mat,x,y,z,seg=32){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;world.add(m);return m}
+
+// Floor
+const floor=box(30,.5,34,darkStone,0,-.35,-4);floor.receiveShadow=true;
+const runner=box(4,.08,28,red,0,-.05,-4);
+for(let z=-17;z<10;z+=2){const strip=box(3.2,.035,.025,gold,0,.01,z);strip.material.opacity=.22;strip.material.transparent=true}
+
+// Rajasthani pillars
+for(const x of [-6.2,6.2]){
+  cyl(1.05,9,stone,x,4,-1);cyl(1.22,.38,gold,x,8.55,-1);cyl(1.25,.32,gold,x,-.05,-1);
+  for(let y=1;y<8;y+=1.15)cyl(1.1,.09,gold,x,y,-1,24);
+  const cap=cyl(1.65,.5,stone,x,9,-1);cap.scale.y=.6;
+}
+// Rear facade
+box(15,9,.8,stone,0,4,-7);
+const archOuter=new THREE.Mesh(new THREE.TorusGeometry(5.3,1.05,20,64,Math.PI),stone);archOuter.rotation.z=Math.PI;archOuter.position.set(0,3.8,-7.45);world.add(archOuter);
+const archInner=new THREE.Mesh(new THREE.TorusGeometry(4.15,.34,16,64,Math.PI),gold);archInner.rotation.z=Math.PI;archInner.position.set(0,3.8,-7.9);world.add(archInner);
+
+// Gate doors
+const doors=new THREE.Group();world.add(doors);
+function door(x,side){
+ const g=new THREE.Group();g.position.set(x,4,-7.95);g.userData.side=side;
+ const slab=box(4.05,7.4,.38,red,x,4,-7.95); // move mesh under group
+ slab.position.set(0,0,0);g.add(slab);world.remove(slab);
+ for(let y=-2.5;y<=2.5;y+=1.25)for(let xx=-1.4;xx<=1.4;xx+=1.4){const ring=new THREE.Mesh(new THREE.TorusGeometry(.48,.055,8,20),gold);ring.position.set(xx,y,.23);g.add(ring)}
+ const hinge=cyl(.12,7,gold,0,0,.25,16);g.add(hinge);return g;
+}
+const left=door(-4.02,-1),right=door(4.02,1);doors.add(left,right);
+
+// Door pulls
+for(const x of [-.65,.65]){const h=cyl(.08,1.5,gold,x,4,-7.55,16);h.rotation.z=Math.PI/2;world.add(h)}
+
+// Floating jewellery-like gold forms
+const jewels=new THREE.Group();scene.add(jewels);
+for(let i=0;i<13;i++){
+ const r=.08+Math.random()*.18;const geo=new THREE.OctahedronGeometry(r,1);const m=new THREE.Mesh(geo,gold);
+ m.position.set((Math.random()-.5)*15,1+Math.random()*8,-12-Math.random()*10);m.userData.baseY=m.position.y;m.userData.phase=Math.random()*6.28;jewels.add(m);
+}
+const dustGeo=new THREE.BufferGeometry();const pts=[];
+for(let i=0;i<650;i++)pts.push((Math.random()-.5)*28,Math.random()*13-1,Math.random()*24-16);
+dustGeo.setAttribute('position',new THREE.Float32BufferAttribute(pts,3));const dust=new THREE.Points(dustGeo,new THREE.PointsMaterial({color:0xd8b15a,size:.025,transparent:true,opacity:.55}));scene.add(dust);
+
+let mx=0,my=0,entered=false;
+addEventListener('pointermove',e=>{mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5)});
+document.querySelector('#enter').addEventListener('click',()=>{
+ if(entered)return;entered=true;document.body.classList.add('opened');
+ gsap.to(left.rotation,{y:-1.12,duration:1.8,ease:'power3.inOut'});
+ gsap.to(right.rotation,{y:1.12,duration:1.8,ease:'power3.inOut'});
+ gsap.to(camera.position,{z:4.5,y:3.1,duration:2.8,delay:.25,ease:'power3.inOut'});
+ gsap.to(camera.rotation,{y:0,duration:2.2,delay:.2});
+ gsap.to(key,{intensity:125,duration:2});
+});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.8))});
+function animate(t){
+ requestAnimationFrame(animate);const time=t*.001;
+ camera.position.x+=(mx*1.1-camera.position.x)*.025;
+ camera.position.y+=((entered?3.1:2.8)+my*.5-camera.position.y)*.025;
+ world.rotation.y+=((mx*.035)-world.rotation.y)*.03;
+ jewels.children.forEach((m,i)=>{m.rotation.x=time*.25+i;m.rotation.y=time*.45+i*.2;m.position.y=m.userData.baseY+Math.sin(time*.7+m.userData.phase)*.12});
+ dust.rotation.y=time*.008;
+ renderer.render(scene,camera);
+}
+animate(0);
+setTimeout(()=>gsap.to('#loading',{opacity:0,duration:.8,onComplete:()=>document.querySelector('#loading').remove()}),700);
+</script>
+</body></html>
