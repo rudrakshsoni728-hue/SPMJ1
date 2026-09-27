@@ -64,12 +64,7 @@
 
 <script type="module">
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
-import {OrbitControls} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js";
-import {RoomEnvironment} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/environments/RoomEnvironment.js";
-import {EffectComposer} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/EffectComposer.js";
-import {RenderPass} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/RenderPass.js";
-import {UnrealBloomPass} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/UnrealBloomPass.js";
-import {OutputPass} from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/postprocessing/OutputPass.js";
+
 
 const canvas=document.querySelector("#webgl");
 const scene=new THREE.Scene(); scene.background=new THREE.Color("#24080e");
@@ -77,7 +72,11 @@ const camera=new THREE.PerspectiveCamera(34,innerWidth/innerHeight,.1,100); came
 const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:"high-performance"});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.8)); renderer.setSize(innerWidth,innerHeight);
 renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
-const pmrem=new THREE.PMREMGenerator(renderer); scene.environment=pmrem.fromScene(new RoomEnvironment(),.04).texture;
+const pmrem=new THREE.PMREMGenerator(renderer);
+const envScene=new THREE.Scene();
+const envLight=new THREE.HemisphereLight(0xffd9a0,0x201014,2.2); envScene.add(envLight);
+const envPoint=new THREE.PointLight(0xffc36a,35,20); envPoint.position.set(3,5,4); envScene.add(envPoint);
+scene.environment=pmrem.fromScene(envScene,.04).texture;
 
 const gold=new THREE.MeshPhysicalMaterial({color:0xd5a83e,metalness:.95,roughness:.18,clearcoat:.65,clearcoatRoughness:.12,envMapIntensity:2.4});
 const goldDark=new THREE.MeshPhysicalMaterial({color:0x8d5b16,metalness:1,roughness:.22,envMapIntensity:1.8});
@@ -133,7 +132,7 @@ scene.add(new THREE.HemisphereLight(0x9f6b45,0x130306,1.2));
 for(const [x,z] of [[-5,-4],[5,-9],[-5,-15],[5,-22]]){const l=new THREE.PointLight(0xffbd62,20,9,2);l.position.set(x,4,z);scene.add(l)}
 const key=new THREE.DirectionalLight(0xffe0aa,3);key.position.set(2,8,4);scene.add(key);
 
-const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.42,.65,.72);composer.addPass(bloom);composer.addPass(new OutputPass());
+
 
 let scroll=0,targetScroll=0;
 addEventListener("scroll",()=>targetScroll=scrollY/(document.body.scrollHeight-innerHeight),{passive:true});
@@ -152,10 +151,10 @@ function animate(){
  necklace.rotation.y=t*.22+scroll*2;
  necklace.position.y=2.2+Math.sin(t*.7)*.2;
  gems.rotation.y=t*.025;
- composer.render();
+ renderer.render(scene,camera);
 }
 animate();
-addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)});
+addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setSize(innerWidth,innerHeight)});
 setTimeout(()=>{document.querySelector("#loader").style.opacity="0";setTimeout(()=>document.querySelector("#loader").remove(),900)},900);
 </script>
 </body>
