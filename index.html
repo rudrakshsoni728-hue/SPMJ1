@@ -13,33 +13,25 @@
 .vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 46%,transparent 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.58) 100%);z-index:2}
 .grain{position:fixed;inset:-50%;pointer-events:none;z-index:3;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");transform:rotate(8deg)}
 .ui{position:fixed;inset:0;z-index:5;pointer-events:none}
-.editorial{position:absolute;inset:0;background:#eee7d8;color:#2a090b;overflow:hidden;pointer-events:auto}
-.editorial-meta,.editorial-location{position:absolute;top:28px;font-size:9px;letter-spacing:.34em;color:#6b5749;z-index:8}
-.editorial-meta{left:38px}.editorial-location{right:38px}
-.editorial-logo{position:absolute;top:38px;left:50%;transform:translateX(-50%);z-index:9}
-.editorial-logo img{width:92px;height:92px;object-fit:cover;display:block;box-shadow:0 10px 25px rgba(35,5,7,.16)}
-.editorial-art{position:absolute;left:17%;top:11%;width:66%;height:78%;z-index:2}
-.burgundy-panel{position:absolute;left:0;top:5%;width:82%;height:90%;background:#77151a}
-.architecture-stack{position:absolute;right:-6%;bottom:-12%;width:48%;height:84%;filter:grayscale(1) contrast(1.12);opacity:.92}
-.arch-tower{position:absolute;bottom:0;border-radius:46% 46% 8% 8%;background:linear-gradient(90deg,#555 0%,#ddd 45%,#777 70%,#333 100%);box-shadow:inset 0 0 0 2px rgba(30,30,30,.25)}
-.tower-back{right:5%;width:42%;height:88%}.tower-front{right:39%;width:32%;height:66%;opacity:.96}
-.arch-tower:before,.arch-tower:after{content:"";position:absolute;left:-12%;width:124%;height:13%;border-radius:50%;background:#575757;box-shadow:inset 0 4px 4px rgba(255,255,255,.22)}
-.arch-tower:before{top:18%}.arch-tower:after{top:47%}
-.arch-balcony{position:absolute;bottom:4%;left:0;width:68%;height:30%;border-top:18px solid #555;background:repeating-linear-gradient(90deg,#666 0 10px,#ddd 10px 15px);opacity:.82}
-.jewel-chain{position:absolute;left:-5%;top:-7%;width:61%;height:68%;transform:rotate(-7deg);z-index:4;border-top:14px solid #c99b43;border-radius:50%}
-.jewel-chain:before{content:"";position:absolute;inset:0;border-top:4px solid #f0d58b;border-radius:50%}
-.jewel-chain span{position:absolute;width:34px;height:48px;border:5px solid #d0a64f;border-radius:50%;background:#f4ead7;box-shadow:0 5px 9px rgba(50,20,10,.25)}
-.jewel-chain span:nth-child(1){left:4%;top:8%}.jewel-chain span:nth-child(2){left:18%;top:31%}.jewel-chain span:nth-child(3){left:32%;top:48%}.jewel-chain span:nth-child(4){left:47%;top:55%}.jewel-chain span:nth-child(5){left:61%;top:49%}.jewel-chain span:nth-child(6){left:74%;top:32%}.jewel-chain span:nth-child(7){left:86%;top:10%}
-.editorial-copy{position:absolute;left:7%;bottom:12%;z-index:7;width:42%}
-.editorial-kicker{font-size:10px;letter-spacing:.45em;color:#8b6b43;margin-bottom:18px}
-.editorial-copy h1{margin:0;font:500 clamp(55px,7.2vw,118px)/.76 'Cormorant Garamond',serif;letter-spacing:-.025em;color:#f4ead7}
-.editorial-copy h1 em{font-weight:400}
-.editorial-copy p{max-width:360px;margin:24px 0;color:#f0dcc1;font:italic 18px/1.3 'Cormorant Garamond',serif}
-.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.7);background:#3b080b;color:#f4ead7;padding:14px 28px;font-size:9px;letter-spacing:.36em;text-transform:uppercase;transition:.35s}
-.enter:hover{background:#d5a94a;color:#260507}
-.editorial-side{position:absolute;right:32px;bottom:22%;writing-mode:vertical-rl;font-size:9px;letter-spacing:.35em;color:#806b59;z-index:8}
-.editorial-scroll{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.3em;color:#765d4d;z-index:8}
-.editorial-scroll i{display:inline-block;width:45px;height:1px;background:#a98652;margin-left:12px;vertical-align:middle}
+.editorial{position:absolute;inset:0;background:#eee8da;color:#2d090b;overflow:auto;pointer-events:auto}
+.nav{position:absolute;top:0;left:0;right:0;height:92px;display:flex;align-items:center;justify-content:space-between;padding:0 4vw;z-index:10}
+.nav-brand{font:500 11px/1.35 'Cormorant Garamond',serif;letter-spacing:.3em;color:#4d3a2f}
+.nav nav{display:flex;gap:38px;align-items:center}.nav nav a{font-size:9px;letter-spacing:.3em;color:#4e4037;text-decoration:none}.nav nav .active{color:#6c0f13;border-bottom:1px solid #b99143;padding-bottom:8px}
+.menu{width:44px;height:44px;border:1px solid #9c7b4b;border-radius:50%;background:transparent;color:#5c4435;font-size:19px}
+.hero{position:relative;min-height:100vh;overflow:hidden}
+.hero:before{content:"";position:absolute;left:10%;top:14%;width:55%;height:78%;background:#76161b;z-index:0}
+.hero-copy{position:absolute;left:7.5%;top:26%;z-index:6;width:43%;color:#f3e8d6}
+.kicker{font-size:9px;letter-spacing:.48em;color:#d9b86f;margin-bottom:18px}.hero-copy h1{font:500 clamp(58px,7vw,112px)/.78 'Cormorant Garamond',serif;letter-spacing:-.03em;margin:0}.hero-copy h1 span{color:#e1b65d}.hero-copy p{font:italic 18px/1.35 'Cormorant Garamond',serif;max-width:390px;color:#ead9bf;margin:26px 0}.enter{border:1px solid #c39a4a;background:transparent;color:#f4ead9;padding:15px 24px;font-size:9px;letter-spacing:.35em;cursor:pointer}.enter b{font-size:17px;margin-left:22px;font-weight:400}
+.hero-stage{position:absolute;right:0;top:0;width:67%;height:100%;overflow:hidden;z-index:2}.fabric{position:absolute;inset:0;background:radial-gradient(ellipse at 40% 45%,rgba(104,5,13,.35),transparent 45%),linear-gradient(115deg,transparent 25%,rgba(95,6,12,.2) 45%,rgba(25,2,4,.62) 75%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.05' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");background-color:#35070a}
+.palace{position:absolute;border:2px solid rgba(218,177,112,.48);box-shadow:inset 0 0 0 10px rgba(218,177,112,.08);opacity:.65}.pal1{right:2%;top:12%;width:34%;height:72%;border-radius:50% 50% 0 0}.pal2{right:25%;top:28%;width:23%;height:56%;border-radius:50% 50% 0 0}
+.hero-jewel{position:absolute;width:min(63%,760px);left:17%;top:9%;z-index:5;filter:drop-shadow(0 28px 22px rgba(0,0,0,.4));animation:float 7s ease-in-out infinite}.hero-ring{position:absolute;width:19%;right:7%;bottom:9%;z-index:6;filter:drop-shadow(0 20px 15px rgba(0,0,0,.4));animation:float 6s ease-in-out -2s infinite}@keyframes float{50%{transform:translateY(-13px) rotate(.6deg)}}
+.spark{position:absolute;width:5px;height:5px;background:#f7dc8b;border-radius:50%;box-shadow:0 0 18px #f7dc8b;z-index:7;animation:pulse 2.4s infinite}.s1{left:42%;top:28%}.s2{left:70%;top:39%;animation-delay:.8s}.s3{left:57%;top:65%;animation-delay:1.4s}@keyframes pulse{50%{opacity:.2;transform:scale(.5)}}
+.logo-lockup{position:absolute;left:48%;top:19px;transform:translateX(-50%);z-index:11}.logo-lockup img{width:82px;height:82px;object-fit:cover;box-shadow:0 10px 25px rgba(0,0,0,.18)}
+.hero-side{position:absolute;z-index:8;writing-mode:vertical-rl;font-size:8px;letter-spacing:.38em;color:#7a6757}.left-side{left:2.7%;top:45%}.right-side{right:2.4%;top:42%}
+.scroll-cue{position:absolute;bottom:28px;left:7%;z-index:8;font-size:8px;letter-spacing:.35em;color:#776254}.scroll-cue span{display:inline-block;width:55px;height:1px;background:#aa874e;vertical-align:middle;margin-left:15px}
+.collection-preview{min-height:100vh;background:#efe7d7;padding:13vh 7vw;display:grid;grid-template-columns:30% 70%;gap:4vw}.collection-preview small{font-size:9px;letter-spacing:.35em;color:#94704c}.collection-preview h2{font:500 clamp(54px,6vw,95px)/.78 'Cormorant Garamond',serif;margin-top:25px;color:#3a0b0e}.collection-preview h2 i{color:#a2763d;font-weight:400}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;align-items:end}.cards article{height:62vh;position:relative;background:#e4dccd;overflow:hidden}.cards article:nth-child(2){margin-top:9vh;background:#76161b}.cards img{width:100%;height:78%;object-fit:contain}.cards b{position:absolute;left:20px;bottom:44px;font-size:10px;letter-spacing:.2em}.cards span{position:absolute;left:20px;bottom:20px;font:italic 17px 'Cormorant Garamond',serif}
+.opened .editorial{transition:opacity 1s,transform 1.5s;opacity:0;transform:scale(1.04)}
+@media(max-width:800px){.nav nav{display:none}.hero:before{left:0;top:18%;width:100%;height:55%}.hero-stage{width:100%;height:58%;top:10%;opacity:.92}.hero-copy{left:7%;top:55%;width:84%}.hero-copy h1{font-size:54px}.hero-copy p{font-size:15px;margin:13px 0}.logo-lockup{left:50%}.hero-side{display:none}.collection-preview{grid-template-columns:1fr;padding:12vh 7vw}.cards{grid-template-columns:1fr}.cards article{height:55vh}.cards article:nth-child(2){margin-top:0}}
 #loading{position:fixed;inset:0;background:#210306;z-index:10;display:grid;place-items:center;transition:opacity .8s}.loadmark{font:500 28px 'Cormorant Garamond',serif;letter-spacing:.25em;color:#d5a94a}
 .opened .editorial{opacity:0;transform:scale(1.04);transition:opacity 1s,transform 1.4s}
 @media(max-width:700px){
@@ -61,32 +53,43 @@
 <div class="ui">
 <div class="brand">Suraj Prakash Mangilal Jewellers</div><div class="edition">Jodhpur · Rajasthan</div>
 <div class="editorial">
-  <div class="editorial-logo"><img src="data:image/jpeg;base64,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" alt="SPMJ logo"></div>
-  <div class="editorial-meta">SURaj PRAKASH MANGILAL JEWELLERS</div>
-  <div class="editorial-location">JODHPUR · RAJASTHAN</div>
+  <header class="nav">
+    <div class="nav-brand">SURAJ PRAKASH MANGILAL<br>JEWELLERS</div>
+    <nav><a class="active">HOME</a><a>HERITAGE</a><a>COLLECTIONS</a><a>SHOWROOM</a></nav>
+    <button class="menu">—</button>
+  </header>
 
-  <div class="editorial-art">
-    <div class="burgundy-panel"></div>
-    <div class="architecture-stack">
-      <div class="arch-tower tower-back"></div>
-      <div class="arch-tower tower-front"></div>
-      <div class="arch-balcony"></div>
+  <main class="hero">
+    <div class="hero-arch"></div>
+    <div class="hero-copy">
+      <div class="kicker">A HOUSE OF HERITAGE</div>
+      <h1>Luxury,<br><span>made more</span><br>wearable.</h1>
+      <p>Jewellery shaped by Rajasthan's architecture, artistry and timeless tradition.</p>
+      <button class="enter" id="enter">ENTER THE HOUSE <b>→</b></button>
     </div>
-    <div class="jewel-chain">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+
+    <div class="hero-stage">
+      <div class="fabric"></div>
+      <div class="palace pal1"></div><div class="palace pal2"></div>
+      <img class="hero-jewel" src="assets/necklace.svg" alt="SPMJ heritage necklace">
+      <img class="hero-ring" src="assets/ring.svg" alt="SPMJ gold ring">
+      <div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div>
     </div>
-  </div>
 
-  <div class="editorial-copy">
-    <div class="editorial-kicker">A HOUSE OF HERITAGE</div>
-    <h1>Luxury,<br><em>made more</em><br>wearable.</h1>
-    <p>Jewellery shaped by Rajasthan's architecture, artistry and timeless tradition.</p>
-    <button class="enter" id="enter">ENTER THE HOUSE</button>
-  </div>
+    <div class="hero-side left-side">JODHPUR · RAJASTHAN</div>
+    <div class="hero-side right-side">FINE JEWELLERY · SINCE 1948</div>
+    <div class="logo-lockup"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCAB3AHgDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAEEBQMCBgf/xAA3EAACAgIBAgQCCAQGAwAAAAABAgADBBESBSETMUFRYXEGFCIjUpGxwRUzQoElMlOh0fBigvH/xAAYAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/EACARAQEBAAIBBAMAAAAAAAAAAAABEQIhEgMiMVFBYXH/2gAMAwEAAhEDEQA/APz3Q9hGh7CImHpw0PYRoewkxC4aHsI0PYREGGh7CND2Emd6sHJux2vqoeypToso3qTcMV9D2EaHsIiUw0PYRoewkyIMRoewjQ9hJiDEaHsIkxCYiIiBMSJMKREQLXT8Ns/Nrx1YLy7lj/SB3Jn0uHUp6UF6RdYAmSC1thC9gO5+Xl2nzPTsx8DMTIRQ3He1PqD5ibH1vo1/T2xA+Tio9niHa8gDry+U4+pLb+lZfWHos6rkvja8It2I8j7/AO8pTWt6I7VG7AyK82tfMJ2cf+syT2Oj5zfGzMiERE2ERIgTEiICJEmEIiIEy5kYa42FTZa5GRd9pax6J7n4mccGkZGdRSfKyxVPy3NOyhur/SS2obFYcgkf0ovb/vzmOVyq0/o10tDg25GQm/rClFB/B6/n+0yl6HcetfUTvwx9o2f+Hv8AP0+cv9Z64yOuH0w8RWQpZfUjyUTZsybxhWCta26glQZkHcA+369p5/LnPd9r0zPpBhNiV052DupqAEPDt9n0MzMoJ1bBfOrQJl0/z0UdnH4hL3RusjJVsHqLcvE2qu3rv0Mq9Oofp30j+qWd67N1nf8AUpHaa47x6vzBhRPdyeFfZX+Biv5Gc56UIiIQiIgRJkRCJiRJhVjp9oo6hj2nySxSfluafUMk9OuzcagMt19hL2eyHuAPzmJNgr/GMJCnfOx14svrag8iPiJz5SbtVko7VuroxVlOwR6GfTPc4+ia3BuNpIYsvY75ee/efMEENxI0d60Zv9Qurxfo/Tgm1HvbXIIwPHvv0k9SbZ/SMAkkkkkk9yZvdKyznZeJ44JtxNsbfdAPI/31MFVZ2CopZidAAbJmvcB0npz45IObkj7zR/lp7fMy85L1+RlXWeLfZZ+Ni35meIidEIkRAREQhES1g4wyTaO7Oq7SsEAud+Qi3BViXLMeoYd1wFiulorCt6Agnv28+0614VViXFEudq1rIVSNnl5+knlBnz1XY9VivWxR1OwQe4loYlX8TbHFu6Vb7Vg9B/3tGPhhupHFu5DiWBK/AE/tJsVYPU8fLH+I4gez/WqPFj8x5GQF6L5+Jma/DoSrg0Lk2urBjxrZwFPckDepaHT6j4mha7LStgrBHIEnXE9pmyToSeqUYqlem4opYjXjWHk/9vaZjszsWdizE7JJ7mWrMSteo+AthNY0Wb1Ua2f7jvOleAD1C/GfkSisycTrlobH5yzxgz4li2gC9aEDGwHi2/Ll8J3bBrXqAp8Qmp051sTrn22B8O/aa2IoRLy4asMkeHallSAhGI8969pyzcdccUABgz1h22d6MeUFaIiUROtViIG51896IIbRE5RCLlme1xv8asMtzhyAdaI7DR+U9LlWrTc61ELYUAcb0nHyAlGaeA6fU2ouYLTexUsf6SACD+czZJFcbsh/vLRQaTkaPMEgfHXzM715QOauRajJcE4hACTZtSAf0k5QGWuAAQF4sNb/AMq8v+JGWy5dWPkJ2ZX8JgdA63tf11M9CtitbjWW/cszBGRgdjiD2JnrEa+um0VUO4uAUMN9tHfaWci+u+vJaw8clAU3/qLyGv7j9JD1rlZeM6Pxo4KNqQDWQO/y7y79jjZkWWGzIWgo1oCGxSdcvXXxMl8167gbaCLRV4TciQSNa2fjPPn0rQ8zkbA331qe+oUPd1G1gV4vYFB5DvHXwOb5bl0ssq++4cQ+yC3oG+fxkW5DeHXTk0FmrUjbEhtHvO2YUycRXr3uhvDAOgePp+X7zx1WsnLttBUp9kA8h37CJg8Pnl0sU1jT1rWPteQHl85xyL/GWocQvhoEHfzE4xN5IhERKEREIS0lFbY1Nh5cnuNZ7+nb/mVZZbIVaaa6gTwc2bf30O3+0lV2fForzkpcMtZsKFuYPbegfLtPVmClVKWOrADmLBy8iPL09ZTuva4ksqKSxYlRrZnq3LutFgd9iwgt8deUzlHV8etcOu0K3J0LE8x2IbXl5mcsmpKkoK7+8rDnZ9dkftByXNSVlUIRSqnj3AP/ANkPks9aoVTSrwB131LJR6yaq6slUUNxKqTs9+4B/edr8SqvMSkBuJt4b5gkjY/KcLMp7SCy177dwvfQ8hJfLd7haVrD8+ZIXzPxjKOt+LVU9QZmrDuQQTvS71y/WccqkUuoCFQRsHkGDfEEQ2VY3HkEPFiw2PLfmPlOdlrWBVICqg0Ao7CJKPERImkTEiICIiAiIgTERAREQIiIgIiICIiAiIhH/9k=" alt="SPMJ logo"></div>
+    <div class="scroll-cue">SCROLL TO EXPLORE <span></span></div>
+  </main>
 
-  <div class="editorial-side">FINE JEWELLERY · SINCE 1948</div>
-  <div class="editorial-scroll">SCROLL TO EXPLORE <i></i></div>
-</div>
+  <section class="collection-preview">
+    <div><small>THE HOUSE COLLECTION</small><h2>Objects of<br><i>heritage.</i></h2></div>
+    <div class="cards">
+      <article><img src="assets/necklace.svg"><b>01</b><span>Heritage Necklace</span></article>
+      <article><img src="assets/earrings.svg"><b>02</b><span>Royal Earrings</span></article>
+      <article><img src="assets/ring.svg"><b>03</b><span>Heirloom Ring</span></article>
+    </div>
+  </section>
 </div>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
