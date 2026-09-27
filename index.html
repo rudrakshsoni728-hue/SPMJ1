@@ -12,9 +12,44 @@
 #stage{position:fixed;inset:0}canvas{display:block}
 .vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 46%,transparent 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.58) 100%);z-index:2}
 .grain{position:fixed;inset:-50%;pointer-events:none;z-index:3;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");transform:rotate(8deg)}
-.ui{position:fixed;inset:0;z-index:5;pointer-events:none}.brand{position:absolute;top:28px;left:34px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;opacity:.75}.edition{position:absolute;top:28px;right:34px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.58}
-.intro{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);text-align:center;width:min(540px,88vw);transition:opacity .8s,transform 1s}.intro img{width:min(150px,30vw);height:auto;display:block;margin:0 auto 28px;mix-blend-mode:screen;filter:drop-shadow(0 0 20px rgba(213,169,74,.16))}.eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:#d7bf8b;margin-bottom:14px}.title{font:500 clamp(42px,7vw,92px)/.82 'Cormorant Garamond',serif;letter-spacing:.025em}.subtitle{margin:22px auto 32px;max-width:480px;color:#c8b9a2;font:italic 18px 'Cormorant Garamond',serif;line-height:1.35}.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.55);background:rgba(33,4,7,.45);color:var(--ivory);padding:14px 28px;font-size:10px;letter-spacing:.38em;text-transform:uppercase;backdrop-filter:blur(8px);transition:.35s}.enter:hover{background:#d5a94a;color:#240407;box-shadow:0 0 35px rgba(213,169,74,.2)}
-.hint{position:absolute;bottom:31px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#b8a98f;opacity:.7}.line{display:inline-block;width:42px;height:1px;background:var(--gold);vertical-align:middle;margin:0 12px;opacity:.6}
+.ui{position:fixed;inset:0;z-index:5;pointer-events:none}
+.editorial{position:absolute;inset:0;background:#eee7d8;color:#2a090b;overflow:hidden;pointer-events:auto}
+.editorial-meta,.editorial-location{position:absolute;top:28px;font-size:9px;letter-spacing:.34em;color:#6b5749;z-index:8}
+.editorial-meta{left:38px}.editorial-location{right:38px}
+.editorial-logo{position:absolute;top:38px;left:50%;transform:translateX(-50%);z-index:9}
+.editorial-logo img{width:92px;height:92px;object-fit:cover;display:block;box-shadow:0 10px 25px rgba(35,5,7,.16)}
+.editorial-art{position:absolute;left:17%;top:11%;width:66%;height:78%;z-index:2}
+.burgundy-panel{position:absolute;left:0;top:5%;width:82%;height:90%;background:#77151a}
+.architecture-stack{position:absolute;right:-6%;bottom:-12%;width:48%;height:84%;filter:grayscale(1) contrast(1.12);opacity:.92}
+.arch-tower{position:absolute;bottom:0;border-radius:46% 46% 8% 8%;background:linear-gradient(90deg,#555 0%,#ddd 45%,#777 70%,#333 100%);box-shadow:inset 0 0 0 2px rgba(30,30,30,.25)}
+.tower-back{right:5%;width:42%;height:88%}.tower-front{right:39%;width:32%;height:66%;opacity:.96}
+.arch-tower:before,.arch-tower:after{content:"";position:absolute;left:-12%;width:124%;height:13%;border-radius:50%;background:#575757;box-shadow:inset 0 4px 4px rgba(255,255,255,.22)}
+.arch-tower:before{top:18%}.arch-tower:after{top:47%}
+.arch-balcony{position:absolute;bottom:4%;left:0;width:68%;height:30%;border-top:18px solid #555;background:repeating-linear-gradient(90deg,#666 0 10px,#ddd 10px 15px);opacity:.82}
+.jewel-chain{position:absolute;left:-5%;top:-7%;width:61%;height:68%;transform:rotate(-7deg);z-index:4;border-top:14px solid #c99b43;border-radius:50%}
+.jewel-chain:before{content:"";position:absolute;inset:0;border-top:4px solid #f0d58b;border-radius:50%}
+.jewel-chain span{position:absolute;width:34px;height:48px;border:5px solid #d0a64f;border-radius:50%;background:#f4ead7;box-shadow:0 5px 9px rgba(50,20,10,.25)}
+.jewel-chain span:nth-child(1){left:4%;top:8%}.jewel-chain span:nth-child(2){left:18%;top:31%}.jewel-chain span:nth-child(3){left:32%;top:48%}.jewel-chain span:nth-child(4){left:47%;top:55%}.jewel-chain span:nth-child(5){left:61%;top:49%}.jewel-chain span:nth-child(6){left:74%;top:32%}.jewel-chain span:nth-child(7){left:86%;top:10%}
+.editorial-copy{position:absolute;left:7%;bottom:12%;z-index:7;width:42%}
+.editorial-kicker{font-size:10px;letter-spacing:.45em;color:#8b6b43;margin-bottom:18px}
+.editorial-copy h1{margin:0;font:500 clamp(55px,7.2vw,118px)/.76 'Cormorant Garamond',serif;letter-spacing:-.025em;color:#f4ead7}
+.editorial-copy h1 em{font-weight:400}
+.editorial-copy p{max-width:360px;margin:24px 0;color:#f0dcc1;font:italic 18px/1.3 'Cormorant Garamond',serif}
+.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.7);background:#3b080b;color:#f4ead7;padding:14px 28px;font-size:9px;letter-spacing:.36em;text-transform:uppercase;transition:.35s}
+.enter:hover{background:#d5a94a;color:#260507}
+.editorial-side{position:absolute;right:32px;bottom:22%;writing-mode:vertical-rl;font-size:9px;letter-spacing:.35em;color:#806b59;z-index:8}
+.editorial-scroll{position:absolute;bottom:25px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.3em;color:#765d4d;z-index:8}
+.editorial-scroll i{display:inline-block;width:45px;height:1px;background:#a98652;margin-left:12px;vertical-align:middle}
+#loading{position:fixed;inset:0;background:#210306;z-index:10;display:grid;place-items:center;transition:opacity .8s}.loadmark{font:500 28px 'Cormorant Garamond',serif;letter-spacing:.25em;color:#d5a94a}
+.opened .editorial{opacity:0;transform:scale(1.04);transition:opacity 1s,transform 1.4s}
+@media(max-width:700px){
+ .editorial-meta,.editorial-location{top:18px;font-size:7px}.editorial-meta{left:16px}.editorial-location{right:16px}
+ .editorial-logo{top:34px}.editorial-logo img{width:70px;height:70px}
+ .editorial-art{left:8%;top:16%;width:84%;height:63%}.burgundy-panel{width:88%}
+ .architecture-stack{right:-5%;width:48%}.jewel-chain{width:68%;top:-5%}
+ .editorial-copy{left:8%;bottom:10%;width:78%}.editorial-copy h1{font-size:54px}
+ .editorial-copy p{font-size:15px;margin:13px 0}.editorial-side{display:none}
+}
 #loading{position:fixed;inset:0;background:#210306;z-index:10;display:grid;place-items:center;transition:opacity .8s}.loadmark{font:500 28px 'Cormorant Garamond',serif;letter-spacing:.25em;color:#d5a94a}
 .opened .intro{opacity:0;transform:translate(-50%,-58%) scale(.96)}.opened .hint{opacity:0}
 @media(max-width:700px){.brand{left:18px}.edition{right:18px}.intro img{width:145px}.subtitle{font-size:16px}.title{font-size:52px}}
@@ -25,20 +60,39 @@
 <div id="stage"></div><div class="vignette"></div><div class="grain"></div>
 <div class="ui">
 <div class="brand">Suraj Prakash Mangilal Jewellers</div><div class="edition">Jodhpur · Rajasthan</div>
-<div class="intro">
-<img src="data:image/jpeg;base64,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" alt="SPMJ logo">
-<div class="eyebrow">An invitation to enter</div>
-<div class="title">The House of SPMJ</div>
-<div class="subtitle">Where Rajasthan's heritage meets the quiet brilliance of fine jewellery.</div>
-<button class="enter" id="enter">Enter the House</button>
+<div class="editorial">
+  <div class="editorial-logo"><img src="data:image/jpeg;base64,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" alt="SPMJ logo"></div>
+  <div class="editorial-meta">SURaj PRAKASH MANGILAL JEWELLERS</div>
+  <div class="editorial-location">JODHPUR · RAJASTHAN</div>
+
+  <div class="editorial-art">
+    <div class="burgundy-panel"></div>
+    <div class="architecture-stack">
+      <div class="arch-tower tower-back"></div>
+      <div class="arch-tower tower-front"></div>
+      <div class="arch-balcony"></div>
+    </div>
+    <div class="jewel-chain">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="editorial-copy">
+    <div class="editorial-kicker">A HOUSE OF HERITAGE</div>
+    <h1>Luxury,<br><em>made more</em><br>wearable.</h1>
+    <p>Jewellery shaped by Rajasthan's architecture, artistry and timeless tradition.</p>
+    <button class="enter" id="enter">ENTER THE HOUSE</button>
+  </div>
+
+  <div class="editorial-side">FINE JEWELLERY · SINCE 1948</div>
+  <div class="editorial-scroll">SCROLL TO EXPLORE <i></i></div>
 </div>
-<div class="hint"><span class="line"></span>Move to explore<span class="line"></span></div>
 </div>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js';
 import {gsap} from 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js';
 
-const scene=new THREE.Scene();scene.background=new THREE.Color(0x190204);scene.fog=new THREE.FogExp2(0x190204,.055);
+const scene=new THREE.Scene();scene.background=new THREE.Color(0xeee7d8);scene.fog=new THREE.FogExp2(0x3a1716,.035);
 const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);camera.position.set(0,2.8,18);
 const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;document.querySelector('#stage').appendChild(renderer.domElement);
 
@@ -50,8 +104,8 @@ const darkStone=new THREE.MeshStandardMaterial({color:0x241416,roughness:.82});
 const red=new THREE.MeshStandardMaterial({color:0x4b080d,roughness:.5,metalness:.1});
 
 scene.add(new THREE.HemisphereLight(0xf6dfba,0x130103,1.3));
-const key=new THREE.PointLight(0xd7a94c,80,28);key.position.set(0,7,7);scene.add(key);
-const redLight=new THREE.PointLight(0x7a1118,45,25);redLight.position.set(0,4,-5);scene.add(redLight);
+const key=new THREE.PointLight(0xd7a94c,42,28);key.position.set(0,7,7);scene.add(key);
+const redLight=new THREE.PointLight(0x7a1118,22,25);redLight.position.set(0,4,-5);scene.add(redLight);
 
 const world=new THREE.Group();scene.add(world);
 function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;world.add(m);return m}
