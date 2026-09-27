@@ -10,10 +10,10 @@
 :root{--wine:#300508;--red:#6f1116;--gold:#d5a94a;--ivory:#f4ead7}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#160204;color:var(--ivory);font-family:Inter,sans-serif}
 #stage{position:fixed;inset:0}canvas{display:block}
-.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 42%,transparent 20%,rgba(0,0,0,.18) 58%,rgba(0,0,0,.72) 100%);z-index:2}
+.vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 46%,transparent 30%,rgba(0,0,0,.12) 62%,rgba(0,0,0,.58) 100%);z-index:2}
 .grain{position:fixed;inset:-50%;pointer-events:none;z-index:3;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");transform:rotate(8deg)}
 .ui{position:fixed;inset:0;z-index:5;pointer-events:none}.brand{position:absolute;top:28px;left:34px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;opacity:.75}.edition{position:absolute;top:28px;right:34px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.58}
-.intro{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:min(620px,90vw);transition:opacity .8s,transform 1s}.intro img{width:min(190px,38vw);height:auto;display:block;margin:0 auto 28px;mix-blend-mode:screen;filter:drop-shadow(0 0 20px rgba(213,169,74,.16))}.eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:#d7bf8b;margin-bottom:14px}.title{font:500 clamp(42px,7vw,92px)/.82 'Cormorant Garamond',serif;letter-spacing:.025em}.subtitle{margin:22px auto 32px;max-width:480px;color:#c8b9a2;font:italic 18px 'Cormorant Garamond',serif;line-height:1.35}.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.55);background:rgba(33,4,7,.45);color:var(--ivory);padding:14px 28px;font-size:10px;letter-spacing:.38em;text-transform:uppercase;backdrop-filter:blur(8px);transition:.35s}.enter:hover{background:#d5a94a;color:#240407;box-shadow:0 0 35px rgba(213,169,74,.2)}
+.intro{position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);text-align:center;width:min(540px,88vw);transition:opacity .8s,transform 1s}.intro img{width:min(150px,30vw);height:auto;display:block;margin:0 auto 28px;mix-blend-mode:screen;filter:drop-shadow(0 0 20px rgba(213,169,74,.16))}.eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:#d7bf8b;margin-bottom:14px}.title{font:500 clamp(42px,7vw,92px)/.82 'Cormorant Garamond',serif;letter-spacing:.025em}.subtitle{margin:22px auto 32px;max-width:480px;color:#c8b9a2;font:italic 18px 'Cormorant Garamond',serif;line-height:1.35}.enter{pointer-events:auto;cursor:pointer;border:1px solid rgba(213,169,74,.55);background:rgba(33,4,7,.45);color:var(--ivory);padding:14px 28px;font-size:10px;letter-spacing:.38em;text-transform:uppercase;backdrop-filter:blur(8px);transition:.35s}.enter:hover{background:#d5a94a;color:#240407;box-shadow:0 0 35px rgba(213,169,74,.2)}
 .hint{position:absolute;bottom:31px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:#b8a98f;opacity:.7}.line{display:inline-block;width:42px;height:1px;background:var(--gold);vertical-align:middle;margin:0 12px;opacity:.6}
 #loading{position:fixed;inset:0;background:#210306;z-index:10;display:grid;place-items:center;transition:opacity .8s}.loadmark{font:500 28px 'Cormorant Garamond',serif;letter-spacing:.25em;color:#d5a94a}
 .opened .intro{opacity:0;transform:translate(-50%,-58%) scale(.96)}.opened .hint{opacity:0}
@@ -60,31 +60,107 @@ const floor=box(30,.5,34,darkStone,0,-.35,-4);floor.receiveShadow=true;
 const runner=box(4,.08,28,red,0,-.05,-4);
 for(let z=-17;z<10;z+=2){const strip=box(3.2,.035,.025,gold,0,.01,z);strip.material.opacity=.22;strip.material.transparent=true}
 
-// Rajasthani pillars
-for(const x of [-6.2,6.2]){
-  cyl(1.05,9,stone,x,4,-1);cyl(1.22,.38,gold,x,8.55,-1);cyl(1.25,.32,gold,x,-.05,-1);
-  for(let y=1;y<8;y+=1.15)cyl(1.1,.09,gold,x,y,-1,24);
-  const cap=cyl(1.65,.5,stone,x,9,-1);cap.scale.y=.6;
+// Jodhpur haveli entrance — projecting facade, jharokhas, chhatris, carved arch and latticework
+function arch(radius, tube, mat, x, y, z, start=Math.PI, end=2*Math.PI){
+  const a=new THREE.Mesh(new THREE.TorusGeometry(radius,tube,18,64,end-start),mat);
+  a.rotation.z=Math.PI; a.position.set(x,y,z); world.add(a); return a;
 }
-// Rear facade
-box(15,9,.8,stone,0,4,-7);
-const archOuter=new THREE.Mesh(new THREE.TorusGeometry(5.3,1.05,20,64,Math.PI),stone);archOuter.rotation.z=Math.PI;archOuter.position.set(0,3.8,-7.45);world.add(archOuter);
-const archInner=new THREE.Mesh(new THREE.TorusGeometry(4.15,.34,16,64,Math.PI),gold);archInner.rotation.z=Math.PI;archInner.position.set(0,3.8,-7.9);world.add(archInner);
+function trim(x,y,z,w,d=0.12){
+  const t=box(w,d,.18,gold,x,y,z); t.castShadow=false; return t;
+}
+function jharokha(x,z,scale=1){
+  const g=new THREE.Group(); g.position.set(x,3.9,z); g.scale.setScalar(scale); world.add(g);
+  const base=new THREE.Mesh(new THREE.BoxGeometry(2.5,.28,1.25),sandstone);base.position.y=-1.25;g.add(base);
+  const bay=new THREE.Mesh(new THREE.BoxGeometry(2.05,1.65,1.05),blueStone);bay.position.y=-.35;g.add(bay);
+  // projecting balcony brackets
+  for(const bx of [-.78,.78]){const b=new THREE.Mesh(new THREE.BoxGeometry(.25,.9,.9),sandstone);b.position.set(bx,-.82,.02);b.rotation.z=(bx<0?-.18:.18);g.add(b)}
+  // cusped-ish window opening
+  const opening=new THREE.Mesh(new THREE.BoxGeometry(1.1,1.05,1.12),darkStone);opening.position.set(0,-.32,.56);g.add(opening);
+  for(const wx of [-.36,0,.36]){const bar=new THREE.Mesh(new THREE.BoxGeometry(.045,.92,.045),gold);bar.position.set(wx,-.32,1.15);g.add(bar)}
+  const top=new THREE.Mesh(new THREE.ConeGeometry(1.28,.75,8),sandstone);top.position.y=.85;top.rotation.y=Math.PI/8;g.add(top);
+  const fin=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,.5,12),gold);fin.position.y=1.45;g.add(fin);
+}
+function chhatri(x,z,s=1){
+  const g=new THREE.Group();g.position.set(x,7.2,z);g.scale.setScalar(s);world.add(g);
+  const base=new THREE.Mesh(new THREE.CylinderGeometry(1.25,1.35,.28,8),sandstone);g.add(base);
+  for(let i=0;i<4;i++){
+    const p=new THREE.Mesh(new THREE.CylinderGeometry(.10,.13,1.55,10),sandstone);
+    p.position.set(Math.cos(i*Math.PI/2)*.78,.82,Math.sin(i*Math.PI/2)*.78);g.add(p);
+  }
+  const dome=new THREE.Mesh(new THREE.SphereGeometry(1.12,24,12,0,Math.PI*2,0,Math.PI/2),sandstone);dome.position.y=1.55;g.add(dome);
+  const fin=new THREE.Mesh(new THREE.CylinderGeometry(.07,.07,.55,10),gold);fin.position.y=2.35;g.add(fin);
+}
+function latticePanel(x,y,z,w,h){
+  const g=new THREE.Group();g.position.set(x,y,z);world.add(g);
+  const frame=new THREE.Mesh(new THREE.BoxGeometry(w,h,.16),sandstone);g.add(frame);
+  for(let i=-2;i<=2;i++){
+    const a=new THREE.Mesh(new THREE.BoxGeometry(.035,h-.16,.18),gold);a.position.x=i*w/5;g.add(a);
+  }
+  for(let i=-2;i<=2;i++){
+    const a=new THREE.Mesh(new THREE.BoxGeometry(w-.16,.035,.18),gold);a.position.y=i*h/5;g.add(a);
+  }
+}
+const floor=box(30,.5,34,darkStone,0,-.35,-4);floor.receiveShadow=true;
+const runner=box(4,.08,28,red,0,-.05,-4);
+for(let z=-17;z<10;z+=2){const strip=box(3.2,.035,.025,gold,0,.01,z);strip.material.opacity=.22;strip.material.transparent=true}
 
-// Gate doors
+// Wide blue-city facade with warm sandstone carving.
+box(19,10,.9,stone,0,4,-7);
+box(18.4,.22,1.0,sandstone,0,9.05,-7);
+box(18.4,.28,1.0,sandstone,0,-.2,-7);
+
+// Main ceremonial arch surround.
+const archOuter=new THREE.Mesh(new THREE.TorusGeometry(5.55,1.05,24,96,Math.PI),sandstone);
+archOuter.rotation.z=Math.PI;archOuter.position.set(0,4.1,-7.55);world.add(archOuter);
+const archInner=new THREE.Mesh(new THREE.TorusGeometry(4.45,.28,18,96,Math.PI),gold);
+archInner.rotation.z=Math.PI;archInner.position.set(0,4.1,-8.05);world.add(archInner);
+
+// Carved arch ribs and floral medallions.
+for(let i=0;i<11;i++){
+  const a=Math.PI+(Math.PI*i/10), r=5.52;
+  const m=new THREE.Mesh(new THREE.SphereGeometry(.16,14,10),gold);
+  m.position.set(Math.cos(a)*r,4.1+Math.sin(a)*r,-8.16);world.add(m);
+}
+
+// Flanking jharokhas — a strong Jodhpur haveli silhouette.
+jharokha(-7.1,-7.65,.95); jharokha(7.1,-7.65,.95);
+jharokha(-9.0,-7.3,.62); jharokha(9.0,-7.3,.62);
+
+// Upper chhatris.
+chhatri(-5.5,-7.2,.82); chhatri(5.5,-7.2,.82);
+
+// Small jaali windows across the facade.
+latticePanel(-3.2,7.25,-7.56,2.1,1.35);
+latticePanel(3.2,7.25,-7.56,2.1,1.35);
+
+// Horizontal haveli cornices.
+for(const y of [1.0,7.9,8.65]){trim(0,y,-8.0,17.5,.22)}
+
+// Central gate doors: heavy carved wood, inset panels, brass studs.
 const doors=new THREE.Group();world.add(doors);
+const wood=new THREE.MeshStandardMaterial({color:0x3a0909,roughness:.66,metalness:.12});
 function door(x,side){
- const g=new THREE.Group();g.position.set(x,4,-7.95);g.userData.side=side;
- const slab=box(4.05,7.4,.38,red,x,4,-7.95); // move mesh under group
- slab.position.set(0,0,0);g.add(slab);world.remove(slab);
- for(let y=-2.5;y<=2.5;y+=1.25)for(let xx=-1.4;xx<=1.4;xx+=1.4){const ring=new THREE.Mesh(new THREE.TorusGeometry(.48,.055,8,20),gold);ring.position.set(xx,y,.23);g.add(ring)}
- const hinge=cyl(.12,7,gold,0,0,.25,16);g.add(hinge);return g;
+ const g=new THREE.Group();g.position.set(x,4,-8.18);g.userData.side=side;
+ const slab=new THREE.Mesh(new THREE.BoxGeometry(4.15,7.5,.42),wood);slab.castShadow=slab.receiveShadow=true;g.add(slab);
+ for(let yy=-2.55;yy<=2.55;yy+=1.7){
+   const panel=new THREE.Mesh(new THREE.BoxGeometry(3.15,1.25,.12),red);panel.position.set(0,yy,.25);g.add(panel);
+   for(let xx=-1.15;xx<=1.15;xx+=.58){
+     const stud=new THREE.Mesh(new THREE.SphereGeometry(.07,12,8),gold);stud.position.set(xx,yy,.34);g.add(stud);
+   }
+ }
+ const hinge=new THREE.Mesh(new THREE.CylinderGeometry(.11,.11,7.2,16),gold);hinge.position.set(side<0? -1.88:1.88,0,.32);g.add(hinge);
+ return g;
 }
-const left=door(-4.02,-1),right=door(4.02,1);doors.add(left,right);
+const left=door(-4.05,-1),right=door(4.05,1);doors.add(left,right);
 
-// Door pulls
-for(const x of [-.65,.65]){const h=cyl(.08,1.5,gold,x,4,-7.55,16);h.rotation.z=Math.PI/2;world.add(h)}
+// Brass handles mounted near the centre seam.
+for(const x of [-.72,.72]){
+  const handle=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,1.5,16),gold);
+  handle.rotation.z=Math.PI/2;handle.position.set(x,4,-7.68);world.add(handle);
+}
 
+// Warm interior glow visible through the door seam.
+const portalGlow=new THREE.PointLight(0xffc66b,18,9);portalGlow.position.set(0,4,-6.2);world.add(portalGlow);
 // Floating jewellery-like gold forms
 const jewels=new THREE.Group();scene.add(jewels);
 for(let i=0;i<13;i++){
